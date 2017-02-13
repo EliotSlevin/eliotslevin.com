@@ -1,12 +1,12 @@
 var Engine = Matter.Engine,
-        Render = Matter.Render,
-        Runner = Matter.Runner,
-        Body = Matter.Body,
-        Events = Matter.Events,
-        MouseConstraint = Matter.MouseConstraint,
-        Mouse = Matter.Mouse,
-        World = Matter.World,
-        Bodies = Matter.Bodies;
+    Render = Matter.Render,
+    Runner = Matter.Runner,
+    Body = Matter.Body,
+    Events = Matter.Events,
+    MouseConstraint = Matter.MouseConstraint,
+    Mouse = Matter.Mouse,
+    World = Matter.World,
+    Bodies = Matter.Bodies;
 
 var engine;
 var render;
@@ -14,7 +14,19 @@ var runner;
 var shapes = [];
 var mouse;
 
+var w = 0;
+$(window).load(function(){
+    w = $(window).width();
+    var h = window.innerHeight;
+    $('#matter').height(h);
+    $('header').height(h);
+});
+
 var shapeSpawnerInterval;
+
+var mq = window.matchMedia( "(min-width: 900px)" );
+var largeScreen = window.matchMedia( "(min-width: 1025px)" );
+
 
 function initShapes(){
  
@@ -26,7 +38,13 @@ function initShapes(){
     var width = document.getElementById('matter').offsetWidth;
     var height = document.documentElement.clientHeight;
 
-    var size = 200;
+    var size;
+    if (mq.matches) {
+      size = 200;
+    } else {
+      size = 150;
+    }
+
     var colors = ['#4b62df', '#f7886f', '#213d47', '#ffe271', /*'#ff7183'*/];
     // var colors = ['#4b62df', '#4bdfdb', '#4bdf66', '#df704b', '#df4b72'];
 
@@ -109,25 +127,31 @@ function initShapes(){
         }
     }, 800);
 
-
-    // add mouse control
-    mouse = Mouse.create(render.canvas),
-        mouseConstraint = MouseConstraint.create(engine, {
-            mouse: mouse,
-            constraint: {
-                stiffness: 0.2,
-                render: {
-                    visible: false
+    if(largeScreen.matches){
+        // add mouse control
+        mouse = Mouse.create(render.canvas),
+            mouseConstraint = MouseConstraint.create(engine, {
+                mouse: mouse,
+                constraint: {
+                    stiffness: 0.2,
+                    render: {
+                        visible: false
+                    }
                 }
-            }
-        });
+            });
 
-    mouse.element.removeEventListener("mousewheel", mouse.mousewheel);
-    mouse.element.removeEventListener("DOMMouseScroll", mouse.mousewheel);
+        mouse.element.removeEventListener("mousewheel", mouse.mousewheel);
+        mouse.element.removeEventListener("DOMMouseScroll", mouse.mousewheel);
 
-    World.add(engine.world, mouseConstraint);
+        World.add(engine.world, mouseConstraint);
 
-    render.mouse = mouse;
+        render.mouse = mouse;
+    }
+
+
+    
+
+   
 
 
     // run the engine
@@ -141,18 +165,21 @@ initShapes();
 
 
 window.addEventListener("resize", function(event){
+    if(w != $(window).width()){
+        Runner.stop(runner);
+        Render.stop(render);
+        clearInterval(shapeSpawnerInterval);
 
-    Runner.stop(runner);
-    Render.stop(render);
-    clearInterval(shapeSpawnerInterval);
+        delete engine;
+        delete render;
+        delete runner;
+        delete shapes;
 
-    delete engine;
-    delete render;
-    delete runner;
-    delete shapes;
+        $('#matter').html('');
 
-    $('#matter').html('');
-
-    initShapes();
+        initShapes();  
+        
+        w = $(window).width;
+    }
 });
 

@@ -74,8 +74,9 @@ a{
 }
 
 /* Head */
-.header{
+header{
 	background-color: #ffffff;
+	position: relative;
 }
 
 #pt{
@@ -92,6 +93,7 @@ a{
 	width: 100%;
 	height: 100vh;
 	overflow: hidden;
+	transition: ease all 0.5s;
 }
 
 /*#matter canvas{
@@ -176,21 +178,6 @@ section{
 	border-color: #4b62df;
 }
 
-.projects span{
-	font-size: 14px;
-	font-weight: 600;
-	display: inline-block;
-	padding: 5px;
-	padding-left: 8px;
-	padding-right: 8px;
-	border: 1px solid rgba(0,0,0,0.3);
-	border-radius: 3px;
-	color:  rgba(0,0,0,0.3);
-	
-	/*position: absolute;
-    top: -40px;
-    left: 0px;*/
-}
 
 
 
@@ -245,6 +232,60 @@ section{
 .flexin .folio{
 	padding: 100px;
 }
+
+.flexin a{
+	text-decoration: none;
+}
+
+/*.flexin a:hover h2 span{
+	color: #4b62df;
+}*/
+
+.flexin h2 span{
+	border-bottom: 2px solid #4b62df;
+	padding-bottom: 10px;
+	transition: ease all 0.2s;
+}
+
+.flexin h2 span:hover{
+	color: #4b62df;
+}
+
+.flexin a > span{
+	font-size: 14px;
+	font-weight: 600;
+	display: inline-block;
+	padding: 5px;
+	padding-left: 8px;
+	padding-right: 8px;
+	border: 1px solid rgba(0,0,0,0.3);
+	border-radius: 3px;
+	color:  rgba(0,0,0,0.3);
+	
+	/*position: absolute;
+    top: -40px;
+    left: 0px;*/
+}
+
+.flexin div > span{
+	font-size: 14px;
+	font-weight: 600;
+	display: inline-block;
+	padding: 5px;
+	padding-left: 8px;
+	padding-right: 8px;
+	border: 1px solid rgba(0,0,0,0.3);
+	border-radius: 3px;
+	color:  rgba(0,0,0,0.3);
+	
+	/*position: absolute;
+    top: -40px;
+    left: 0px;*/
+}
+
+
+
+
 
 .yellow{
 	background-color: #ffe271;
@@ -526,6 +567,11 @@ footer{
 	padding-bottom: 3px;
 }
 
+.skills h2 a:hover{
+	color: white;
+	border-color: white;
+}
+
 
 .full-width{
 	width: 100%;
@@ -589,7 +635,17 @@ hr{
 
 	nav{
 		top: 25px;
-		right: 25px;
+		left: 25px;
+		text-align: left;
+	}
+
+	nav a{
+		margin-left: 0px;
+		margin-right: 25px;
+	}
+
+	.link{
+		padding-bottom: 5px;
 	}
 
 	.g-33{
@@ -614,5 +670,13 @@ hr{
 		padding: 25px;
 		padding-top: 150px;
 		padding-bottom: 150px;
+	}
+
+	.skills h2 a{
+		font-size: 20px;
+	}
+
+	.skills h2 a i{
+		font-size: 20px;
 	}
 }
