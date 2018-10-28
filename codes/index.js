@@ -57,7 +57,8 @@ function initShapes(){
              height: height,
              wireframes: false,
              background: '#ffffff',
-    	}
+             pixelRatio: 'auto'
+        }
     });
 
 
@@ -125,7 +126,7 @@ function initShapes(){
             var body = shapes.shift();
             World.remove(engine.world, body);
         }
-    }, 800);
+    }, 1200);
 
     if(largeScreen.matches){
         // add mouse control

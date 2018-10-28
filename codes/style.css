@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Rubik');
-@import url('https://fonts.googleapis.com/css?family=Crimson+Text');
+/*@import url('https://fonts.googleapis.com/css?family=Rubik');
 
 
 
@@ -14,9 +13,12 @@
   src:  url('graphik/Graphik-Medium.otf') format('opentype');
   font-weight: 600;
 }
+*/
+
+@import url('https://rsms.me/inter/inter-ui.css');
 
 body{
-	font-family: 'Graphik', sans-serif;
+	font-family: 'Inter UI', sans-serif;
 	background-color: #4b62df;
 	color: #213d47;
 	margin: 0;
